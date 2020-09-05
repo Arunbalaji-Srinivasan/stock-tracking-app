@@ -12,8 +12,10 @@ class Greeting extends React.Component {
   
     getHour = () => {
      const date = new Date();
-     const hour = date.getHours();
+     var hour = date.getHours();
      const min = date.getMinutes();
+     const time = min/60;
+     hour = hour +time;
      this.setState({
         hour,
         min
@@ -21,11 +23,11 @@ class Greeting extends React.Component {
     }
   
     render(){
-      const {hour, min} = this.state;
+      const {hour} = this.state;
       return (
         <div className='App'>
-          <h2>{hour >= 9 && min >= 30 && hour <=16 ? `Market is currently open! Current Time - ${hour}:${min}` 
-                                                   : `Market is currently closed! Current Time - ${hour}:${min}`}</h2>
+          <h2>{ (hour >= 9.5) && (hour <= 16)  ? `Market is currently open!` 
+                                                  : `Market is currently closed!`}</h2>
         </div>
       );
     }
